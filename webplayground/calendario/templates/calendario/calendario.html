@@ -1,0 +1,26 @@
+{% extends 'core/base.html' %}
+{% block content %}
+    <div class="container mt-5">
+            <!-- Formulario para seleccionar el año y fechas de vacaciones de Pascua -->
+            <form method="get" action="{% url 'calendario' %}" class="mb-4 text-center">
+                <label for="anyo" class="form-label">Selecciona el año:</label>
+                <input type="number" id="anyo" name="anyo" value="{{ anyo }}" class="form-control w-25 d-inline-block" aria-describedby="anyoHelp">
+                <button type="submit" class="btn btn-primary mt-3" aria-label="Mostrar calendario para el año seleccionado">Mostrar</button>
+            </form>
+    </div>
+    <div class="container mt-5">
+        {% for month in meses %}
+            <!-- Título del Mes -->
+            <div class="month-container mb-4">
+                <h2 class="month-title text-left">{{ month.nombre }}</h2>
+                
+                <!-- Contenido del Mes -->
+                <div class="month-content">
+                    <div class="calendar-grid">
+                        {{ month.html|safe }}
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+ {% endblock %}
